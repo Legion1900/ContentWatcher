@@ -7,6 +7,8 @@ android {
     namespace = "com.legion1900.contentwatcher"
     compileSdk = 33
 
+    buildFeatures.viewBinding = true
+
     defaultConfig {
         applicationId = "com.legion1900.contentwatcher"
         minSdk = 24
