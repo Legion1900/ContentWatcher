@@ -8,8 +8,6 @@ navComponent = "2.5.3"
 
 androidx-core = "androidx.core:core-ktx:1.9.0"
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
-androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navComponent" }
-androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navComponent" }
 
 google-android-material = "com.google.android.material:material:1.8.0"
 
@@ -23,4 +21,3 @@ android-lib = { id = "com.android.library", version.ref = "androidGradlePlugin" 
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 [bundles]
-androidx-navComponent = ["androidx-navigation-fragment", "androidx-navigation-ui"]
