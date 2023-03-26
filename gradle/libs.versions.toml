@@ -3,6 +3,7 @@
 androidGradlePlugin = "7.4.2"
 kotlin = "1.8.0"
 navComponent = "2.5.3"
+koin = "3.4.0"
 
 [libraries]
 
@@ -13,6 +14,8 @@ google-android-material = "com.google.android.material:material:1.8.0"
 
 adapterDelegate = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2"
 viewBindingDelegate = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.8"
+
+koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
 [plugins]
 
