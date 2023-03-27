@@ -40,4 +40,5 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.coroutines)
+    implementation(libs.koin)
 }
