@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "ContentWatcher"
 include(":app")
 include(":navigation")
+include(":base")
