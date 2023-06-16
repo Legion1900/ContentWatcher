@@ -34,11 +34,10 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.appcompat)
     implementation(libs.google.android.material)
     implementation(libs.androidx.constraintlayout)
 
-    implementation(libs.coroutines)
-    implementation(libs.koin)
+    implementation(project(":base"))
+    implementation(project(":routes"))
+    implementation(project(":game_list_feature"))
 }

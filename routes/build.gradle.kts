@@ -4,13 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.legion1900.navigation"
+    namespace = "com.legion1900.routes"
     compileSdk = 33
 
     defaultConfig {
         minSdk = 24
         targetSdk = 33
-
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -25,5 +24,5 @@ android {
 
 dependencies {
     implementation(libs.androidx.core)
-    implementation(libs.androidx.fragment)
+    implementation(project(":navigation"))
 }

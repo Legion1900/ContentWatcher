@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ContentWatcher"
 include(":app")
+include(":navigation")
+include(":base")
+include(":routes")
+include(":game_list_feature")

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.legion1900.navigation"
+    namespace = "com.legion1900.base"
     compileSdk = 33
 
     defaultConfig {
@@ -24,6 +24,15 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.fragment)
+    api(libs.androidx.core)
+    api(libs.androidx.appcompat)
+    api(libs.androidx.fragment)
+    api(libs.androidx.constraintlayout)
+
+    api(libs.coroutines)
+    api(libs.koin)
+
+    api(libs.viewBindingDelegate)
+
+    api(project(":navigation"))
 }
