@@ -37,5 +37,7 @@ dependencies {
     api(libs.coroutines)
     api(libs.koin)
 
-    api(":navigation")
+    api(libs.viewBindingDelegate)
+
+    api(project(":navigation"))
 }
