@@ -38,4 +38,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(project(":base"))
+    implementation(project(":routes"))
+    implementation(project(":game_list_feature"))
 }

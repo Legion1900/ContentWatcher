@@ -1,11 +1,13 @@
 plugins {
-    alias(libs.plugins.android.lib)
-    alias(libs.plugins.android.kotlin)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.legion1900.navigation"
+    namespace = "com.legion1900.game_list_feature"
     compileSdk = 33
+
+    buildFeatures.viewBinding = true
 
     defaultConfig {
         minSdk = 24
@@ -18,12 +20,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.fragment)
+    implementation(project(":base"))
 }
