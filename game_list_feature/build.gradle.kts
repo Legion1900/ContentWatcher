@@ -28,4 +28,5 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(libs.google.android.material)
 }
