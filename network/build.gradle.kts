@@ -1,7 +1,13 @@
+import java.util.Properties
+
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.lib)
+    alias(libs.plugins.android.kotlin)
 }
+
+val props by lazy { loadProps() }
+val twitchClientId: String by lazy { props.getProperty("twitch_client_id") }
+val twitchClientSecret: String by lazy { props.getProperty("twitch_client_secret") }
 
 android {
     namespace = "com.legion1900.network"
@@ -15,6 +21,11 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    buildTypes.all {
+        buildConfigField(type = "String", value = twitchClientId, name = "TWITCH_CLIENT_SECRET")
+        buildConfigField(type = "String", value = twitchClientSecret, name = "TWITCH_CLIENT_ID")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -23,6 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+fun loadProps(): Properties {
+    val props = Properties()
+    val propsFile = project.file("local.properties")
+    props.load(propsFile.inputStream())
+    return props
 }
 
 dependencies {
