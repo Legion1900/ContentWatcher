@@ -30,6 +30,7 @@ dependencies {
     api(libs.androidx.constraintlayout)
 
     api(libs.coroutines)
+    api(libs.androidx.coroutine.liveData)
     api(libs.koin)
 
     api(libs.viewBindingDelegate)

@@ -28,5 +28,6 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":network"))
     implementation(libs.google.android.material)
 }
