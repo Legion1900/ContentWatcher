@@ -13,6 +13,7 @@ androidx-core = "androidx.core:core-ktx:1.9.0"
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 androidx-fragment = "androidx.fragment:fragment-ktx:1.5.7"
+androidx-coroutine-liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
 
 google-android-material = "com.google.android.material:material:1.9.0"
 
@@ -24,6 +25,7 @@ koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-logging = "com.squareup.okhttp3:logging-interceptor:3.14.9"
 retrofit-moshiAdapter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 moshi = "com.squareup.moshi:moshi-kotlin:1.14.0"
 

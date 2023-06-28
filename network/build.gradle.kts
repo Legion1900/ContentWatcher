@@ -6,8 +6,8 @@ plugins {
 }
 
 val props by lazy { loadProps() }
-val twitchClientId: String by lazy { props.getProperty("twitch_client_id") }
-val twitchClientSecret: String by lazy { props.getProperty("twitch_client_secret") }
+val twitchClientId: String by lazy { "\"${props.getProperty("twitch_client_id")}\"" }
+val twitchClientSecret: String by lazy { "\"${props.getProperty("twitch_client_secret")}\"" }
 
 android {
     namespace = "com.legion1900.network"
@@ -22,8 +22,8 @@ android {
     }
 
     buildTypes.all {
-        buildConfigField(type = "String", value = twitchClientId, name = "TWITCH_CLIENT_SECRET")
-        buildConfigField(type = "String", value = twitchClientSecret, name = "TWITCH_CLIENT_ID")
+        buildConfigField(type = "String", value = twitchClientId, name = "TWITCH_CLIENT_ID")
+        buildConfigField(type = "String", value = twitchClientSecret, name = "TWITCH_CLIENT_SECRET")
     }
 
     compileOptions {
@@ -46,6 +46,7 @@ fun loadProps(): Properties {
 dependencies {
     implementation(libs.koin)
     implementation(libs.retrofit)
+    implementation(libs.retrofit.logging)
     implementation(libs.retrofit.moshiAdapter)
     implementation(libs.moshi)
 }
