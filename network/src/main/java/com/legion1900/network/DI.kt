@@ -1,10 +1,14 @@
 package com.legion1900.network
 
+import com.legion1900.network.services.IGDBService
 import com.legion1900.network.services.TwitchService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.parameter.ParametersHolder
+import org.koin.core.scope.Scope
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -12,31 +16,57 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val networkModule = module {
 
     single {
-        Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
+        val loggingInterceptor = get<HttpLoggingInterceptor>()
+        OkHttpClient
+            .Builder()
+            .addInterceptor(loggingInterceptor)
             .build()
     }
 
     single {
-        val client = get<OkHttpClient>()
-        val moshi = get<Moshi>()
-        val retrofit = Retrofit.Builder()
-            .client(client)
-            .baseUrl("https://id.twitch.tv")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+        Moshi
+            .Builder()
+            .add(KotlinJsonAdapterFactory())
             .build()
+    }
 
+    factory { (client: OkHttpClient, baseUrl: String) ->
+        Retrofit
+            .Builder()
+            .client(client)
+            .baseUrl(baseUrl)
+            .addConverterFactory(MoshiConverterFactory.create(get()))
+            .build()
+    }
+
+    single {
+        val twitchBaseUrl = "https://id.twitch.tv"
+        val retrofit = get<Retrofit>(get<OkHttpClient>(), twitchBaseUrl)
         retrofit.create(TwitchService::class.java)
+    }
+
+    single {
+        val igdbBaseUrl = "https://api.igdb.com/v4"
+        val authInterceptor = get<IGDBAuthInterceptor>()
+        val client = get<OkHttpClient>()
+            .newBuilder()
+            .addInterceptor(authInterceptor)
+            .build()
+        val retrofit = get<Retrofit>(client, igdbBaseUrl)
+        retrofit.create(IGDBService::class.java)
     }
 
     factory {
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    single {
-        val loggingInterceptor = get<HttpLoggingInterceptor>()
-        OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
-    }
+    single { IGDBAuthInterceptor(get()) }
+
+    single { IGDBAuthHandler(get(), get()) }
+    single { SharedPrefsAuthRepo(get()) } bind AuthRepo::class
+}
+
+internal inline fun <reified T : Any> Scope.get(vararg params: Any): T {
+    val values: MutableList<Any?> = params.toMutableList()
+    return get(parameters = { ParametersHolder(values) })
 }
