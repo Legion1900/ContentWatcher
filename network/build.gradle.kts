@@ -48,5 +48,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.logging)
     implementation(libs.retrofit.moshiAdapter)
+    implementation(libs.retrofit.scalarAdapter)
     implementation(libs.moshi)
 }

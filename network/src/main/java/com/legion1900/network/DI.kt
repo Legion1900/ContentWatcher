@@ -4,6 +4,7 @@ import com.legion1900.network.auth.AuthRepo
 import com.legion1900.network.auth.IGDBAuthHandler
 import com.legion1900.network.auth.IGDBAuthInterceptor
 import com.legion1900.network.auth.SharedPrefsAuthRepo
+import com.legion1900.network.converters.IGDBConverterFactory
 import com.legion1900.network.services.IGDBService
 import com.legion1900.network.services.TwitchService
 import com.squareup.moshi.Moshi
@@ -34,12 +35,14 @@ val networkModule = module {
             .build()
     }
 
+    single { MoshiConverterFactory.create(get()) }
+
     factory { (client: OkHttpClient, baseUrl: String) ->
         Retrofit
             .Builder()
             .client(client)
             .baseUrl(baseUrl)
-            .addConverterFactory(MoshiConverterFactory.create(get()))
+            .addConverterFactory(get<MoshiConverterFactory>())
             .build()
     }
 
@@ -52,19 +55,23 @@ val networkModule = module {
     single {
         val igdbBaseUrl = "https://api.igdb.com/v4"
         val authInterceptor = get<IGDBAuthInterceptor>()
+        val converter = get<IGDBConverterFactory>()
         val client = get<OkHttpClient>()
             .newBuilder()
             .addInterceptor(authInterceptor)
             .build()
         val retrofit = get<Retrofit>(client, igdbBaseUrl)
+            .newBuilder()
+            .addConverterFactory(converter)
+            .build()
         retrofit.create(IGDBService::class.java)
     }
 
     factory {
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
-
     single { IGDBAuthInterceptor(get()) }
+    single { IGDBConverterFactory(get<MoshiConverterFactory>()) }
 
     single { IGDBAuthHandler(get(), get()) }
     single { SharedPrefsAuthRepo(get()) } bind AuthRepo::class
