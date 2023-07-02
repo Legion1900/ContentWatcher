@@ -1,4 +1,4 @@
-package com.legion1900.network
+package com.legion1900.network.auth
 
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor

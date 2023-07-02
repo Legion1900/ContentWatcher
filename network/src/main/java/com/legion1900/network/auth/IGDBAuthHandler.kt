@@ -1,5 +1,6 @@
-package com.legion1900.network
+package com.legion1900.network.auth
 
+import com.legion1900.network.BuildConfig
 import com.legion1900.network.services.TwitchService
 
 internal data class IGDBAuthInfo(

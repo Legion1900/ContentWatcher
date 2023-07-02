@@ -1,5 +1,9 @@
 package com.legion1900.network
 
+import com.legion1900.network.auth.AuthRepo
+import com.legion1900.network.auth.IGDBAuthHandler
+import com.legion1900.network.auth.IGDBAuthInterceptor
+import com.legion1900.network.auth.SharedPrefsAuthRepo
 import com.legion1900.network.services.IGDBService
 import com.legion1900.network.services.TwitchService
 import com.squareup.moshi.Moshi

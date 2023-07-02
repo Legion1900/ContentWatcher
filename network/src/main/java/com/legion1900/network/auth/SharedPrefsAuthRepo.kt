@@ -1,4 +1,4 @@
-package com.legion1900.network
+package com.legion1900.network.auth
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
