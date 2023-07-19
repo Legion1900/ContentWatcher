@@ -6,7 +6,8 @@ import com.chuckerteam.chucker.api.RetentionManager
 import com.legion1900.network.auth.AuthRepo
 import com.legion1900.network.auth.IGDBAuthHandler
 import com.legion1900.network.auth.IGDBAuthInterceptor
-import com.legion1900.network.auth.SharedPrefsAuthRepo
+import com.legion1900.network.auth.realm.RealmAuthRepo
+import com.legion1900.network.auth.realm.TwitchTokenDao
 import com.legion1900.network.converters.IGDBConverterFactory
 import com.legion1900.network.rate_limit.IGDBRateLimitInterceptor
 import com.legion1900.network.services.IGDBServiceInternal
@@ -97,9 +98,11 @@ val networkModule = module {
     single { IGDBConverterFactory(get<MoshiConverterFactory>()) }
 
     single { IGDBAuthHandler(get(), get()) }
-    single { SharedPrefsAuthRepo(get()) } bind AuthRepo::class
+    singleOf(::RealmAuthRepo) bind AuthRepo::class
 
     singleOf(::IGDBService)
+
+    single { TwitchTokenDao(get()) }
 }
 
 internal inline fun <reified T : Any> Scope.get(vararg params: Any): T {
