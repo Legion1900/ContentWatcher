@@ -102,10 +102,10 @@ val networkModule = module {
 
     singleOf(::IGDBService)
 
-    single { TwitchTokenDao(get()) }
+    singleOf(::TwitchTokenDao)
 }
 
-internal inline fun <reified T : Any> Scope.get(vararg params: Any): T {
+private inline fun <reified T : Any> Scope.get(vararg params: Any): T {
     val values: MutableList<Any?> = params.toMutableList()
     return get(parameters = { ParametersHolder(values) })
 }

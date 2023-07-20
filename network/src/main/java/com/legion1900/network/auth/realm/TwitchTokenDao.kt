@@ -4,22 +4,17 @@ import com.legion1900.database.objects.TwitchTokenObject
 import com.legion1900.network.auth.TwitchAppToken
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.first
 
-internal class TwitchTokenDao(
-    private val realm: Realm,
-    private val io: CoroutineDispatcher = Dispatchers.IO
-) {
+internal class TwitchTokenDao(private val realm: Realm) {
 
     suspend fun getTwitchToken(): TwitchTokenObject? {
-        return withContext(io) {
-            realm
-                .query<TwitchTokenObject>()
-                .first()
-                .find()
-        }
+        return realm
+            .query<TwitchTokenObject>()
+            .first()
+            .asFlow()
+            .first()
+            .obj
     }
 
     suspend fun putTwitchToken(token: TwitchAppToken) {

@@ -1,5 +1,6 @@
-package com.legion1900.database.objects
+package com.legion1900.database
 
+import com.legion1900.database.objects.TwitchTokenObject
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import org.koin.dsl.module
