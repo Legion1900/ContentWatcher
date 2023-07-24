@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.realm)
 }
 
 android {
@@ -29,5 +30,7 @@ android {
 dependencies {
     implementation(project(":base"))
     implementation(project(":network"))
+    implementation(project(":database"))
     implementation(libs.google.android.material)
+    implementation(libs.realm)
 }

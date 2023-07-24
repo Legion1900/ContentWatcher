@@ -1,6 +1,7 @@
 package com.legion1900.contentwatcher.di
 
 import com.legion1900.contentwatcher.MainViewModel
+import com.legion1900.database.realmModule
 import com.legion1900.game_list_feature.di.gameListModule
 import com.legion1900.network.networkModule
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -10,7 +11,8 @@ val appModule = module {
 
     includes(
         networkModule,
-        gameListModule
+        realmModule,
+        gameListModule,
     )
 
     viewModelOf(::MainViewModel)

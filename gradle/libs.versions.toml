@@ -8,6 +8,7 @@ coroutines = "1.3.9"
 retrofit = "2.9.0"
 okhttp = "3.14.9"
 chucker = "4.0.0"
+realm = "1.10.0"
 
 [libraries]
 
@@ -34,12 +35,13 @@ retrofit-scalarAdapter = { module = "com.squareup.retrofit2:converter-scalars", 
 retrofit-moshiAdapter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 moshi = "com.squareup.moshi:moshi-kotlin:1.14.0"
 
-
+realm = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
 
 [plugins]
 
 android-app = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-lib = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+realm = { id = "io.realm.kotlin", version.ref = "realm" }
 
 [bundles]

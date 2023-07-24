@@ -40,5 +40,6 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":routes"))
     implementation(project(":network"))
+    implementation(project(":database"))
     implementation(project(":game_list_feature"))
 }
