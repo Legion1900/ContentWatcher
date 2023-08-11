@@ -1,6 +1,8 @@
 package com.legion1900.database
 
 import com.legion1900.database.objects.TwitchTokenObject
+import com.legion1900.database.objects.games.GameGenreObject
+import com.legion1900.database.objects.games.GameImageObject
 import com.legion1900.database.objects.games.GameObject
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
@@ -13,7 +15,9 @@ val realmModule = module {
             .Builder(
                 setOf(
                     TwitchTokenObject::class,
-                    GameObject::class
+                    GameObject::class,
+                    GameImageObject::class,
+                    GameGenreObject::class,
                 )
             )
             .build()

@@ -9,6 +9,7 @@ import com.legion1900.network.auth.IGDBAuthInterceptor
 import com.legion1900.network.auth.realm.RealmAuthRepo
 import com.legion1900.network.auth.realm.TwitchTokenDao
 import com.legion1900.network.converters.IGDBConverterFactory
+import com.legion1900.network.error_handling.ErrorWrapperInterceptor
 import com.legion1900.network.rate_limit.IGDBRateLimitInterceptor
 import com.legion1900.network.services.IGDBServiceInternal
 import com.legion1900.network.services.TwitchService
@@ -30,10 +31,12 @@ val networkModule = module {
     single {
         val loggingInterceptor = get<HttpLoggingInterceptor>()
         val chuckerInterceptor = get<ChuckerInterceptor>()
+        val errorWrapper = ErrorWrapperInterceptor()
         OkHttpClient
             .Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(chuckerInterceptor)
+            .addInterceptor(errorWrapper)
             .build()
     }
 

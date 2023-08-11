@@ -45,6 +45,7 @@ fun loadProps(): Properties {
 
 dependencies {
     implementation(project(":database"))
+    implementation(project(":base"))
 
     implementation(libs.koin)
     implementation(libs.retrofit)
