@@ -17,9 +17,9 @@ internal class RemoteGameSource(
     private val igdbService: IGDBService,
     private val igdbUrlFactory: IGDBUrlFactory,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+) : GameSource {
 
-    suspend fun getGameDetails(
+    override suspend fun getGameDetails(
         offset: Int,
         limit: Int
     ): List<GameDetails> = coroutineScope {

@@ -5,6 +5,7 @@ import com.legion1900.network.services.wrappers.IGDBService
 
 class GamesRepository internal constructor(
     private val remoteGameSource: RemoteGameSource,
+    private val gameStorage: GameStorage
 ) {
     suspend fun getGameCovers(offset: Int, limit: Int): List<GameCover> {
         return remoteGameSource.getGameDetails(offset, limit)

@@ -9,7 +9,7 @@ data class GameDetails(
     val artworks: List<GameImage>,
     val category: String,
     val releaseDate: Long,
-    val genres: List<String>,
+    val genres: List<GameGenre>,
 )
 
 @JvmInline
@@ -19,4 +19,9 @@ data class GameImage(
     val id: String,
     val gameId: GameId,
     val url: String
+)
+
+data class GameGenre(
+    val id: Long,
+    val name: String
 )
