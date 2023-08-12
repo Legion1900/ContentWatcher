@@ -34,7 +34,7 @@ class GamesRepository internal constructor(
 
     private fun List<GameDetails>.toCover(): List<GameCover> {
         return map { details ->
-            val cover = details.screenshot.firstOrNull() ?: details.artworks.firstOrNull() ?: details.cover
+            val cover = details.screenshot.firstOrNull()
             GameCover(details.id, cover, details.name, getFormattedDate(details.releaseDate))
         }
     }

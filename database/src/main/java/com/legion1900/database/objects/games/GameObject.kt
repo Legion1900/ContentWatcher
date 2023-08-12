@@ -10,9 +10,7 @@ class GameObject : RealmObject {
     var id: Long = 0
     var name: String = ""
     var summary: String = ""
-    var cover: GameImageObject? = null
     var screenshots: RealmList<GameImageObject> = realmListOf()
-    var artworks: RealmList<GameImageObject> = realmListOf()
     var category: String = ""
     var releaseDate: Long = 0
     var genres: RealmList<GameGenreObject> = realmListOf()

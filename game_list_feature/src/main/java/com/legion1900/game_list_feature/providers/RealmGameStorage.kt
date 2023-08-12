@@ -33,9 +33,7 @@ internal class RealmGameStorage(private val realm: Realm) : GameStorage {
             id = game.id.value
             name = game.name
             summary = game.summary
-            cover = game.cover?.let(::imageToObject)
             screenshots = game.screenshot.map(::imageToObject).toRealmList()
-            artworks = game.artworks.map(::imageToObject).toRealmList()
             category = game.category
             releaseDate = game.releaseDate
             genres = game.genres.map(::genreToObject).toRealmList()
@@ -81,9 +79,7 @@ internal class RealmGameStorage(private val realm: Realm) : GameStorage {
             id = GameId(obj.id),
             name = obj.name,
             summary = obj.summary,
-            cover = obj.cover?.let(::imgObjectToImage),
             screenshot = obj.screenshots.map(::imgObjectToImage),
-            artworks = obj.artworks.map(::imgObjectToImage),
             category = obj.category,
             releaseDate = obj.releaseDate,
             genres = obj.genres.map(::genreObjToGenre)
