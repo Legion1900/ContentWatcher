@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/game_cover_card_height"
-    android:layout_marginTop="10dp"
-    android:layout_marginHorizontal="5dp"
     app:cardCornerRadius="@dimen/game_cover_card_corners">
 
     <androidx.constraintlayout.widget.ConstraintLayout

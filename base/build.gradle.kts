@@ -28,6 +28,7 @@ dependencies {
     api(libs.androidx.appcompat)
     api(libs.androidx.fragment)
     api(libs.androidx.constraintlayout)
+    api(libs.google.android.material)
 
     api(libs.coroutines)
     api(libs.androidx.coroutine.liveData)

@@ -4,4 +4,7 @@
     <dimen name="game_cover_card_corners">20dp</dimen>
     <dimen name="game_cover_card_content_margin_horizontal">15dp</dimen>
     <dimen name="game_cover_card_release_margin">10dp</dimen>
+    <dimen name="game_cover_card_margin_vertical">8dp</dimen>
+    <dimen name="game_cover_card_margin_horizontal">10dp</dimen>
+    <dimen name="page_margin_padding_vertical">15dp</dimen>
 </resources>

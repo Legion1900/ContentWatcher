@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.legion1900.base.WatcherFragment
+import com.legion1900.base.views.rv.ItemSpacing
 import com.legion1900.game_list_feature.databinding.FragmentGameListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,11 +23,25 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        binding.gameList.adapter = adapter
-        binding.gameList.layoutManager = LinearLayoutManager(requireContext())
-        binding.gameList.setHasFixedSize(true)
-
+        setupGameList()
         loadSomeGames()
+    }
+
+    private fun setupGameList() {
+        val spacingDecoration = ItemSpacing.build(requireContext()) {
+            leftMargin = R.dimen.game_cover_card_margin_horizontal
+            rightMargin = R.dimen.game_cover_card_margin_horizontal
+            topMargin = R.dimen.page_margin_padding_vertical
+            botMargin = R.dimen.page_margin_padding_vertical
+            verticalItemSpacing = R.dimen.game_cover_card_margin_vertical
+        }
+
+        binding.gameList.apply {
+            adapter = this@GameListFragment.adapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            addItemDecoration(spacingDecoration)
+        }
     }
 
     private fun loadSomeGames() {
