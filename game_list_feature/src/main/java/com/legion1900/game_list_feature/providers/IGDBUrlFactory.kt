@@ -21,9 +21,9 @@ internal class IGDBUrlFactory {
      * [See details here.](https://api-docs.igdb.com/#images)
      */
     private enum class Size(val serviceValue: String) {
-        SCREENSHOT_MED("screenshot_med"),
-        HD_READY("720p"),
-        FULL_HD("1080p");
+        SCREENSHOT_MED("t_screenshot_med"),
+        HD_READY("t_720p"),
+        FULL_HD("t_1080p");
 
         val retina: String by lazy { "${serviceValue}_2x" }
     }

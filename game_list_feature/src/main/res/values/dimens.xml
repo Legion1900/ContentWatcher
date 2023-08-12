@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="game_cover_card_height">300dp</dimen>
+    <dimen name="game_cover_card_corners">20dp</dimen>
+    <dimen name="game_cover_card_content_margin_horizontal">15dp</dimen>
+    <dimen name="game_cover_card_release_margin">10dp</dimen>
+</resources>

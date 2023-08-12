@@ -37,6 +37,8 @@ moshi = "com.squareup.moshi:moshi-kotlin:1.14.0"
 
 realm = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
 
+glide = "com.github.bumptech.glide:glide:4.15.1"
+
 [plugins]
 
 android-app = { id = "com.android.application", version.ref = "androidGradlePlugin" }

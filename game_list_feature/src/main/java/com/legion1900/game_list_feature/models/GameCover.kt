@@ -4,4 +4,5 @@ data class GameCover(
     val id: GameId,
     val coverUrl: GameImage?,
     val title: String,
+    val releaseDate: String
 )

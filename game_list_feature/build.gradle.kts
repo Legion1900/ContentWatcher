@@ -32,4 +32,5 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":database"))
     implementation(libs.google.android.material)
+    implementation(libs.glide)
 }
