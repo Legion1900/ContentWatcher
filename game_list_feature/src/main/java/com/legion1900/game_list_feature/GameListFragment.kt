@@ -1,10 +1,8 @@
 package com.legion1900.game_list_feature
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.legion1900.base.WatcherFragment
 import com.legion1900.base.views.rv.ItemSpacing
@@ -45,13 +43,15 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
     }
 
     private fun loadSomeGames() {
-        viewModel.askForGameCovers().handleResult { list ->
-            Log.d("enigma", "results in fragment!")
-            adapter.covers = list
-        }
+        viewModel
+            .askForGameCovers()
+            .handleResult { list ->
+                adapter.covers = list
+            }
     }
 
     companion object {
+
         fun newInstance(): GameListFragment = GameListFragment()
     }
 }

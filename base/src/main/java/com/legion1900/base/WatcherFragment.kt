@@ -1,7 +1,6 @@
 package com.legion1900.base
 
 import android.util.Log
-import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -30,7 +29,6 @@ abstract class WatcherFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), R
 
     protected fun <T> LiveData<Result<T>>.handleResult(onSuccess: (T) -> Unit) {
         observe(viewLifecycleOwner) { result ->
-            Log.d("enigma", "result in base fragment")
             result
                 .onSuccess(onSuccess)
                 .onFailure(::onError)
