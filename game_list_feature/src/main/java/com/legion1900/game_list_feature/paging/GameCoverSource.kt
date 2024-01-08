@@ -1,5 +1,6 @@
 package com.legion1900.game_list_feature.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.legion1900.game_list_feature.models.GameCover
@@ -12,6 +13,9 @@ class GameCoverSource(private val gamesRepository: GamesRepository) : PagingSour
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GameCover> {
         val offset = params.key ?: DEFAULT_INIT_KEY
         val limit = params.loadSize
+
+        Log.d("enigma", "source loads data: offset: $offset, limit: $limit")
+
         return try {
             val covers = gamesRepository.getGameCovers(offset, limit)
             val prevKey = if (offset == DEFAULT_INIT_KEY) null else offset

@@ -19,7 +19,7 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
         setupGameList()
@@ -36,7 +36,10 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
         }
 
         binding.gameList.apply {
-            adapter = this@GameListFragment.adapter
+            adapter = this@GameListFragment.adapter.withLoadStateHeaderAndFooter(
+                header = GameCoverLoadingAdapter(),
+                footer = GameCoverLoadingAdapter(),
+            )
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             addItemDecoration(spacingDecoration)
@@ -44,7 +47,7 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
     }
 
     private fun initGamePaging() {
-       observe(viewModel.pagingData) { adapter.submitData(viewLifecycleOwner.lifecycle, it) }
+        observe(viewModel.pagingData) { adapter.submitData(viewLifecycleOwner.lifecycle, it) }
     }
 
     companion object {

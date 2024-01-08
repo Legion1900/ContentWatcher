@@ -17,7 +17,7 @@ androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 androidx-fragment = "androidx.fragment:fragment-ktx:1.6.1"
 androidx-coroutine-liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
-androidx-paging = "androidx.paging:paging-runtime:3.2.0"
+androidx-paging = "androidx.paging:paging-runtime:3.2.1"
 
 google-android-material = "com.google.android.material:material:1.11.0"
 

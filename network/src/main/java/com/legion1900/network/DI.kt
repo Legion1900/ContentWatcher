@@ -34,7 +34,6 @@ val networkModule = module {
         val errorWrapper = ErrorWrapperInterceptor()
         OkHttpClient
             .Builder()
-            .addInterceptor(loggingInterceptor)
             .addInterceptor(chuckerInterceptor)
             .addInterceptor(errorWrapper)
             .build()
