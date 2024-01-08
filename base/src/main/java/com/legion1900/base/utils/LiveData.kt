@@ -1,6 +1,6 @@
 package com.legion1900.base.utils
 
-import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -11,4 +11,8 @@ fun <R> ViewModel.wrapResult(block: suspend () -> R): LiveData<Result<R>> {
         val result = kotlin.runCatching { block() }
         emit(result)
     }
+}
+
+fun <R> Fragment.observe(ld: LiveData<R>, consume: (R) -> Unit) {
+    ld.observe(viewLifecycleOwner, consume)
 }

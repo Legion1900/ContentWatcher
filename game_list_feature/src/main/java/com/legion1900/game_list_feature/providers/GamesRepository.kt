@@ -6,7 +6,6 @@ import com.legion1900.game_list_feature.models.GameDetails
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.logging.SimpleFormatter
 
 class GamesRepository internal constructor(
     private val remoteGameSource: RemoteGameSource,

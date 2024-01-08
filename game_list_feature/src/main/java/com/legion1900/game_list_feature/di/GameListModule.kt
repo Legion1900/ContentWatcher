@@ -1,6 +1,7 @@
 package com.legion1900.game_list_feature.di
 
 import com.legion1900.game_list_feature.GameListViewModel
+import com.legion1900.game_list_feature.paging.GameCoverSource
 import com.legion1900.game_list_feature.providers.GameStorage
 import com.legion1900.game_list_feature.providers.GamesRepository
 import com.legion1900.game_list_feature.providers.IGDBUrlFactory
@@ -19,4 +20,6 @@ val gameListModule = module {
     single { RemoteGameSource(get(), get()) }
     singleOf(::GamesRepository)
     singleOf(::RealmGameStorage) bind GameStorage::class
+
+    factoryOf(GameCoverSource::Factory)
 }

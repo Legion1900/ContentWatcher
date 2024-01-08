@@ -31,6 +31,7 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":network"))
     implementation(project(":database"))
+    implementation(libs.androidx.paging)
     implementation(libs.google.android.material)
     implementation(libs.glide)
 }

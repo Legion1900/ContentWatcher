@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.legion1900.contentwatcher"
-    compileSdk = 33
+    compileSdk = 34
 
     buildFeatures.viewBinding = true
 

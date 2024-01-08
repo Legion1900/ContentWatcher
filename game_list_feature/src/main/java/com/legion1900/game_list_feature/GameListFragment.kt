@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.legion1900.base.WatcherFragment
+import com.legion1900.base.utils.observe
 import com.legion1900.base.views.rv.ItemSpacing
 import com.legion1900.game_list_feature.databinding.FragmentGameListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,7 +23,7 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
     ) {
         super.onViewCreated(view, savedInstanceState)
         setupGameList()
-        loadSomeGames()
+        initGamePaging()
     }
 
     private fun setupGameList() {
@@ -42,12 +43,8 @@ class GameListFragment : WatcherFragment(R.layout.fragment_game_list) {
         }
     }
 
-    private fun loadSomeGames() {
-        viewModel
-            .askForGameCovers()
-            .handleResult { list ->
-                adapter.covers = list
-            }
+    private fun initGamePaging() {
+       observe(viewModel.pagingData) { adapter.submitData(viewLifecycleOwner.lifecycle, it) }
     }
 
     companion object {

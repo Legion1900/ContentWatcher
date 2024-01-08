@@ -11,13 +11,9 @@ import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.ext.toRealmList
-import io.realm.kotlin.notifications.InitialResults
-import io.realm.kotlin.notifications.UpdatedResults
 import io.realm.kotlin.query.Sort
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 internal class RealmGameStorage(private val realm: Realm) : GameStorage {
 
@@ -59,19 +55,16 @@ internal class RealmGameStorage(private val realm: Realm) : GameStorage {
         offset: Int,
         limit: Int
     ): List<GameDetails> {
-        return realm
-            .query<GameObject>()
-            .sort("writeDate", Sort.ASCENDING)
-            .asFlow()
-            .drop(offset)
-            .take(limit)
-            .map { results ->
-                when (results) {
-                    is InitialResults -> results.list.map(::objectToDetails)
-                    is UpdatedResults -> emptyList()
-                }
-            }
-            .first()
+        return withContext(Dispatchers.IO) {
+            realm
+                .query<GameObject>()
+                .sort("writeDate", Sort.ASCENDING)
+                .find()
+                .drop(offset)
+                .take(limit)
+                .toList()
+                .map(::objectToDetails)
+        }
     }
 
     private fun objectToDetails(obj: GameObject): GameDetails {
